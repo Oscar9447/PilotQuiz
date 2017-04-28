@@ -24,6 +24,7 @@ public class QuizActivity extends AppCompatActivity {
     private String mAnswer;
 
 
+
     private DatabaseReference mQuestionRef, mChoice1Ref, mChoice2Ref, mChoice3Ref, mChoice4Ref, mAnswerRef;
 
     @Override
