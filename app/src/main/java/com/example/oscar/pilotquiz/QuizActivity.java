@@ -1,5 +1,6 @@
 package com.example.oscar.pilotquiz;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,24 +18,36 @@ import static android.graphics.Color.rgb;
 
 public class QuizActivity extends AppCompatActivity {
 
+    public static int mQuestionNumber;
     private TextView mScoreView;
     private TextView mQuestion;
+    private int mQuestionCount = 0;
+    static boolean calledAlready = false;
 
-    private Button mButtonChoice1, mButtonChoice2, mButtonChoice3, mButtonChoice4, mButtonQuit;
+    private Button mButtonChoice1, mButtonChoice2, mButtonChoice3, mButtonQuit;
 
-    private int mScore = 0;
-    private int mQuestionNumber = 0;
+    public static int mScore = 0;
     private String mAnswer;
 
 
 
-    private DatabaseReference mQuestionRef, mChoice1Ref, mChoice2Ref, mChoice3Ref, mChoice4Ref, mAnswerRef;
+    private DatabaseReference mQuestionRef, mChoice1Ref, mChoice2Ref, mChoice3Ref,  mAnswerRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
+
+        //if already called
+        if (!calledAlready)
+        {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            calledAlready = true;
+        }
+
+
+
 
         mScoreView = (TextView)findViewById(R.id.score);
         mQuestion = (TextView) findViewById(R.id.question);
@@ -42,9 +55,10 @@ public class QuizActivity extends AppCompatActivity {
         mButtonChoice1 = (Button) findViewById(R.id.choice1);
         mButtonChoice2 = (Button) findViewById(R.id.choice2);
         mButtonChoice3 = (Button) findViewById(R.id.choice3);
-        mButtonChoice4 = (Button) findViewById(R.id.choice4);
         mButtonQuit =  (Button) findViewById(R.id.quit);
 
+        //resets score
+        mScore = 0;
         updateQuestion();
 
         //Button 1
@@ -114,20 +128,6 @@ public class QuizActivity extends AppCompatActivity {
         //Button3
 
 
-        //Button 4
-        mButtonChoice4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mButtonChoice4.getText().equals(mAnswer)){
-                    mScore = mScore + 1;
-                    updateScore(mScore);
-                    updateQuestion();
-                }else{
-                    updateQuestion();
-                }
-            }
-        });
-        //Button4
 
         //Quit Button
         mButtonQuit.setOnClickListener(new View.OnClickListener() {
@@ -159,8 +159,11 @@ public class QuizActivity extends AppCompatActivity {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             String question = dataSnapshot.getValue(String.class);
-            //set button colour back to blue
+            //set buttons colour back to blue
             mButtonChoice1.setBackgroundColor(rgb(0, 145, 234));
+            mButtonChoice2.setBackgroundColor(rgb(0, 145, 234));
+            mButtonChoice3.setBackgroundColor(rgb(0, 145, 234));
+
             mQuestion.setText(question);
         }
 
@@ -208,19 +211,7 @@ public class QuizActivity extends AppCompatActivity {
 
             }
         });
-        mChoice4Ref = FirebaseDatabase.getInstance().getReferenceFromUrl("https://pilotquiz.firebaseio.com/"+ mQuestionNumber +"/choice4");
-        mChoice4Ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String choice = dataSnapshot.getValue(String.class);
-                mButtonChoice4.setText(choice);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         mAnswerRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://pilotquiz.firebaseio.com/"+ mQuestionNumber +"/answer");
         mAnswerRef.addValueEventListener(new ValueEventListener() {
@@ -237,6 +228,13 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         mQuestionNumber ++;
+        if (mQuestionCount == 10){
+            startActivity( new Intent(getApplicationContext(),Results.class));
+                        finish();
+
+        }else{
+            mQuestionCount ++;
+        }
 
 
 

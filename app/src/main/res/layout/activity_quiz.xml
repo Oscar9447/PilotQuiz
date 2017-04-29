@@ -9,7 +9,8 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:orientation="vertical"
-    tools:context="com.example.oscar.pilotquiz.QuizActivity">
+    tools:context="com.example.oscar.pilotquiz.QuizActivity"
+    android:weightSum="1">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,13 +36,13 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test Question?"
-        android:textSize="16sp"
-        android:padding="8dp"
         android:layout_marginBottom="40dp"
-        android:id="@+id/question"/>
+        android:padding="8dp"
+        android:text="Questions Loading..."
+        android:textSize="16sp" />
 
 
     <Button
@@ -50,42 +51,40 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:background="#0091EA"
-        android:text="A"
+        android:text="Loading..."
         android:textColor="#fff" />
 
     <Button
+        android:id="@+id/choice2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="B"
-        android:background="#0091EA"
-        android:textColor="#fff"
         android:layout_marginBottom="24dp"
-        android:id="@+id/choice2"/>
+        android:background="#0091EA"
+        android:text="Loading..."
+        android:textColor="#fff" />
 
     <Button
+        android:id="@+id/choice3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="C"
-        android:background="#0091EA"
-        android:textColor="#fff"
         android:layout_marginBottom="24dp"
-        android:id="@+id/choice3"/>
+        android:background="#0091EA"
+        android:text="Loading..."
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        android:layout_weight="0.53" />
 
     <Button
+        android:id="@+id/quit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="D"
-        android:background="#0091EA"
-        android:textColor="#fff"
         android:layout_marginBottom="24dp"
-        android:id="@+id/choice4"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="quit"
         android:background="#B71C1C"
-        android:textColor="#fff"
-        android:layout_marginBottom="24dp"
-        android:id="@+id/quit"/>
+        android:text="quit"
+        android:textColor="#fff" />
 
 </LinearLayout>
