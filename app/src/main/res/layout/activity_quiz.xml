@@ -45,13 +45,13 @@
 
 
     <Button
+        android:id="@+id/choice1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="A"
-        android:background="#0091EA"
-        android:textColor="#fff"
         android:layout_marginBottom="24dp"
-        android:id="@+id/choice1"/>
+        android:background="#0091EA"
+        android:text="A"
+        android:textColor="#fff" />
 
     <Button
         android:layout_width="match_parent"

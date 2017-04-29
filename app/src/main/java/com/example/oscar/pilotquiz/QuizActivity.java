@@ -1,5 +1,6 @@
 package com.example.oscar.pilotquiz;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import static android.graphics.Color.rgb;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -31,6 +34,7 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         mScoreView = (TextView)findViewById(R.id.score);
         mQuestion = (TextView) findViewById(R.id.question);
@@ -48,10 +52,16 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(mButtonChoice1.getText().equals(mAnswer)){
+
                     mScore = mScore + 1;
                     updateScore(mScore);
-                    updateQuestion();
+                    //set button colour if correct
+                    mButtonChoice1.setBackgroundColor(Color.GREEN);
+
+                       updateQuestion();
                 }else{
+                    //set button colour
+                    mButtonChoice1.setBackgroundColor(Color.RED);
                     updateQuestion();
                 }
             }
@@ -66,8 +76,15 @@ public class QuizActivity extends AppCompatActivity {
                 if(mButtonChoice2.getText().equals(mAnswer)){
                     mScore = mScore + 1;
                     updateScore(mScore);
+                    //set button colour if correct
+                    mButtonChoice2.setBackgroundColor(Color.GREEN);
+
+
                     updateQuestion();
                 }else{
+                    //set button colour
+                    mButtonChoice2.setBackgroundColor(Color.RED);
+
                     updateQuestion();
                 }
             }
@@ -81,8 +98,15 @@ public class QuizActivity extends AppCompatActivity {
                 if(mButtonChoice3.getText().equals(mAnswer)){
                     mScore = mScore + 1;
                     updateScore(mScore);
+                    //set button colour if correct
+                    mButtonChoice3.setBackgroundColor(Color.GREEN);
+
+
                     updateQuestion();
                 }else{
+                    //set button colour
+                    mButtonChoice3.setBackgroundColor(Color.RED);
+
                     updateQuestion();
                 }
             }
@@ -135,6 +159,8 @@ public class QuizActivity extends AppCompatActivity {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             String question = dataSnapshot.getValue(String.class);
+            //set button colour back to blue
+            mButtonChoice1.setBackgroundColor(rgb(0, 145, 234));
             mQuestion.setText(question);
         }
 
