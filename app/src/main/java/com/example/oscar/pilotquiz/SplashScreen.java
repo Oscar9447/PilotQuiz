@@ -28,7 +28,7 @@ public class SplashScreen extends Activity {
                 catch (Exception e) {}
 
                 finally {
-                    startActivity( new Intent(getApplicationContext(),HomeScreen.class));
+                    startActivity( new Intent(getApplicationContext(),UserSignInActivity.class));
 
                     finish();
                 }
