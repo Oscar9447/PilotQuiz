@@ -139,8 +139,8 @@ public class QuizActivity extends AppCompatActivity {
         mButtonQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(QuizActivity.this, HomeScreen.class));
                 finish();
-                System.exit(0);
             }
         });
 

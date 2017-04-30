@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:background="#B71C1C"
-        android:text="quit"
+        android:text="BACK"
         android:textColor="#fff" />
 
 </LinearLayout>
