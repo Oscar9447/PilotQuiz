@@ -39,6 +39,16 @@ public class UserSignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+            // if user hasent logged out then go to home screen/ skip login screen
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            // User is logged in
+            startActivity(new Intent(UserSignInActivity.this, HomeScreen.class));
+            finish();
+
+        }
+
+
         setContentView(R.layout.user_sign_in);
 
         ((TextView)findViewById(R.id.signupHere)).setOnClickListener(new View.OnClickListener() {
