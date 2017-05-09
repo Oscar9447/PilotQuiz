@@ -1,7 +1,7 @@
 package com.example.oscar.pilotquiz;
 
 /**
- * Created by Oscar
+ * Created by Oscar Richardson
  */
 
 
@@ -14,7 +14,6 @@ package com.example.oscar.pilotquiz;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
-        import android.widget.TextView;
         import android.widget.Toast;
 
         import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,10 +21,7 @@ package com.example.oscar.pilotquiz;
         import com.google.firebase.auth.AuthResult;
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.auth.UserProfileChangeRequest;
         import com.example.oscar.pilotquiz.R;
-
-        import org.w3c.dom.Text;
 
 public class UserSignInActivity extends AppCompatActivity {
 
@@ -89,6 +85,7 @@ public class UserSignInActivity extends AppCompatActivity {
                     password.setError("Enter Password");
                     return;
                 }
+                // connects to fire base and signs in the user using mAuth
                 mAuth.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim())
                         .addOnCompleteListener(UserSignInActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -100,7 +97,7 @@ public class UserSignInActivity extends AppCompatActivity {
                                 // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
 
-                                    // Displays message is sign in failed
+                                    // Displays message if sign in failed
                                     task.getException().printStackTrace();
                                     Log.w(TAG, "signInWithEmail", task.getException());
                                    Toast.makeText(UserSignInActivity.this, "Sign In Failed",

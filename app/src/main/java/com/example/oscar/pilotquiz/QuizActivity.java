@@ -1,5 +1,8 @@
 package com.example.oscar.pilotquiz;
 
+/**
+ * Created by Oscar Richardson
+ */
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.CountDownTimer;

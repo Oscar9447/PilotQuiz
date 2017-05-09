@@ -1,7 +1,7 @@
 package com.example.oscar.pilotquiz;
 
 /**
- * Created by Oscar
+ * Created by Oscar Richardson
  */
 
 import android.content.Intent;

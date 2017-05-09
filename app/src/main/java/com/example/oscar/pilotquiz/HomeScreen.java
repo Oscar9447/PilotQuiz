@@ -11,6 +11,9 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Created by Oscar Richardson
+ */
 public class HomeScreen extends AppCompatActivity {
 
 // declares buttons

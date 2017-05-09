@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
- * Created by Oscar
+ * Created by Oscar Richardson
  */
 
 public class SplashScreen extends Activity {
@@ -33,7 +33,7 @@ public class SplashScreen extends Activity {
                 finally {
                     FirebaseAuth auth = FirebaseAuth.getInstance();
                     if (auth.getCurrentUser() != null) {
-                        // Goes to home avtivity is user is still logged in
+                        // Goes to home activity is user is still logged in
                         startActivity(new Intent(SplashScreen.this, HomeScreen.class));
                         finish();
                         // allows for persistent login
