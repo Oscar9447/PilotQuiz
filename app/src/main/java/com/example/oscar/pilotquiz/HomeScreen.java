@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeScreen extends AppCompatActivity {
 
-
+// declares buttons
     private Button ApuButton;
     private Button fuelButton;
     private Button electricalButton;
@@ -38,6 +38,7 @@ public class HomeScreen extends AppCompatActivity {
         ApuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // starts the quiz activity, starting at questions defined by mQuestion Number.
                 startActivity( new Intent(getApplicationContext(),QuizActivity.class));
                 QuizActivity.mQuestionNumber = 0;
                 finish();
@@ -53,6 +54,7 @@ public class HomeScreen extends AppCompatActivity {
         fuelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // starts the quiz activity, starting at questions defined by mQuestion Number.
                 startActivity( new Intent(getApplicationContext(),QuizActivity.class));
                 QuizActivity.mQuestionNumber = 10;
                 finish();
@@ -63,6 +65,7 @@ public class HomeScreen extends AppCompatActivity {
         electricalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // starts the quiz activity, starting at questions defined by mQuestion Number.
                 startActivity( new Intent(getApplicationContext(),QuizActivity.class));
                 QuizActivity.mQuestionNumber = 20;
                 finish();
@@ -74,6 +77,7 @@ public class HomeScreen extends AppCompatActivity {
         navigationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // starts the quiz activity, starting at questions defined by mQuestion Number.
                 startActivity( new Intent(getApplicationContext(),QuizActivity.class));
                 QuizActivity.mQuestionNumber = 30;
                 finish();
@@ -87,6 +91,7 @@ public class HomeScreen extends AppCompatActivity {
         homeQuitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Quits the app
                 finish();
                 System.exit(0);
             }
@@ -101,6 +106,7 @@ public class HomeScreen extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // creates an option menu at the top of the screen
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
@@ -108,6 +114,7 @@ public class HomeScreen extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        // set a logout action in the menu
         if (id == R.id.action_logout) {
             logout();
             return true;
@@ -115,9 +122,11 @@ public class HomeScreen extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     private void logout() {
+        // signs the user out of the firebase Auth
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(HomeScreen.this, UserSignInActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+        // sets the activity back to the login screen
     }}

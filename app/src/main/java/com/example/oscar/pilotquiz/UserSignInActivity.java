@@ -28,6 +28,8 @@ package com.example.oscar.pilotquiz;
         import org.w3c.dom.Text;
 
 public class UserSignInActivity extends AppCompatActivity {
+
+    // declares variables
     private static final String TAG = UserSignUpActivity.class.getName();
     private Button signIn;
     private FirebaseAuth mAuth;
@@ -39,13 +41,13 @@ public class UserSignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-            // if user hasent logged out then go to home screen/ skip login screen
+            // checks with firebase to see if the user is still logged in, if user has not logged out then go to home screen/ skip login screen
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
-            // User is logged in
+            // Goes to home avtivity is user is still logged in
             startActivity(new Intent(UserSignInActivity.this, HomeScreen.class));
             finish();
-
+            // allows for persistent login
         }
 
 
@@ -54,6 +56,7 @@ public class UserSignInActivity extends AppCompatActivity {
         findViewById(R.id.signupHere).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // start the user sign up activity if the user clicks the sign up text
                 startActivity(new Intent(UserSignInActivity.this, UserSignUpActivity.class));
                 finish();
             }
@@ -67,13 +70,14 @@ public class UserSignInActivity extends AppCompatActivity {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                // connects to Firebase User Auth
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                   //Toast.makeText(UserSignInActivity.this, "onAuthStateChanged:signed_in", Toast.LENGTH_LONG).show();
+
                 } else {
                     // User is signed out
-                 // Toast.makeText(UserSignInActivity.this, "onAuthStateChanged:signed_out", Toast.LENGTH_LONG).show();
+
                 }
             }
         };
@@ -85,11 +89,12 @@ public class UserSignInActivity extends AppCompatActivity {
                 final String strEmail = email.getText().toString();
                 final String strPassword = password.getText().toString();
 
-
+                // checks to see if field is empty, if it is then it displayed a prompt
                 if(TextUtils.isEmpty(strEmail)) {
                     email.setError("Enter email address");
                     return;
                 }
+                // checks to see if field is empty, if it is then it displayed a prompt
                 if(TextUtils.isEmpty(strPassword)) {
                     password.setError("Enter Password");
                     return;
@@ -104,14 +109,17 @@ public class UserSignInActivity extends AppCompatActivity {
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
                                 if (!task.isSuccessful()) {
+
+                                    // Displays message is sign in failed
                                     task.getException().printStackTrace();
                                     Log.w(TAG, "signInWithEmail", task.getException());
-                                   Toast.makeText(UserSignInActivity.this, "Authentication failed.",
+                                   Toast.makeText(UserSignInActivity.this, "Sign In Failed",
                                             Toast.LENGTH_SHORT).show();
                                 }
                                 else{
+                                    // displayed message if user successfully signs in
                                     Toast.makeText(UserSignInActivity.this, "Signed In",Toast.LENGTH_SHORT).show();
-
+                                    // Changes to the home activity.
                                     startActivity( new Intent(getApplicationContext(),HomeScreen.class));
 
                                     finish();

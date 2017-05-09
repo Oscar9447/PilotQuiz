@@ -29,9 +29,9 @@ public class QuizActivity extends AppCompatActivity {
     private TextView mQuestion;
     private int mQuestionCount = 0;
     static boolean calledAlready = false;
-
+    //Buttons to hold questions
     private Button mButtonChoice1, mButtonChoice2, mButtonChoice3, mButtonQuit;
-
+    // storing user score
     public static int mScore = 0;
     private String mAnswer;
 
@@ -47,7 +47,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
 
-        //if already called
+        //checking to see is connection to Firebase database has already been called if not its then called.
         if (!calledAlready)
         {
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -67,31 +67,34 @@ public class QuizActivity extends AppCompatActivity {
 
         //resets score
         mScore = 0;
+        // calls the update question method go get questions from the database
         updateQuestion();
 
         //Button 1
         mButtonChoice1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // When button is clicked it checks to see if the answer on button is the correct one
                 if(mButtonChoice1.getText().equals(mAnswer)){
-
+                    //adds point to score if correct
                     mScore = mScore + 1;
                     updateScore(mScore);
 
 
-                    //set button colour if correct and pauses0 .5 seconds
+                    //set button colour if correct and pauses0 .6 seconds
                     mButtonChoice1.setBackgroundColor(Color.GREEN);
                     new CountDownTimer(600, 6) {
 
                         @Override
                         public void onTick(long arg0) {
-                            // TODO Auto-generated method stub
+
 
                         }
 
                         @Override
                         public void onFinish() {
-                            mButtonChoice1.setBackgroundColor(R.color.buttonBlue);
+                            //sets button color back to default and updates the question.
+                            mButtonChoice1.setBackgroundColor(Color.BLUE);
                             updateQuestion();
                         }
                     }.start();
@@ -99,19 +102,20 @@ public class QuizActivity extends AppCompatActivity {
 
 
                 }else{
-                    //set button colour if correct and pauses0 .5 seconds
+                    //answer is incorrect. set button colour  and pauses 0.6 seconds
                     mButtonChoice1.setBackgroundColor(Color.RED);
                     new CountDownTimer(600, 6) {
 
                         @Override
                         public void onTick(long arg0) {
-                            // TODO Auto-generated method stub
+
 
                         }
 
                         @Override
                         public void onFinish() {
-                            mButtonChoice1.setBackgroundColor(R.color.buttonBlue);
+                            //sets button color back to default and updates the question.
+                            mButtonChoice1.setBackgroundColor(Color.BLUE);
                             updateQuestion();
                         }
                     }.start();
@@ -125,41 +129,44 @@ public class QuizActivity extends AppCompatActivity {
         mButtonChoice2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // When button is clicked it checks to see if the answer on button is the correct one
                 if(mButtonChoice2.getText().equals(mAnswer)){
+                    //adds point to score if correct
                     mScore = mScore + 1;
                     updateScore(mScore);
-                    //set button colour if correct
-                    //set button colour if correct and pauses0 .5 seconds
+
+                    //set button colour if correct and pauses0 .6 seconds
                     mButtonChoice2.setBackgroundColor(Color.GREEN);
                     new CountDownTimer(600, 6) {
 
                         @Override
                         public void onTick(long arg0) {
-                            // TODO Auto-generated method stub
+
 
                         }
 
                         @Override
                         public void onFinish() {
-
-                            mButtonChoice2.setBackgroundColor(R.color.buttonBlue);
+                        //sets button color back to default and updates the question.
+                            mButtonChoice2.setBackgroundColor(Color.BLUE);
                             updateQuestion();
                         }
                     }.start();
                 }else{
-                    //set button colour if correct and pauses0 .5 seconds
+                    //answer is incorrect. set button colour  and pauses0 .6 seconds
                     mButtonChoice2.setBackgroundColor(Color.RED);
                     new CountDownTimer(600, 6) {
 
                         @Override
                         public void onTick(long arg0) {
-                            // TODO Auto-generated method stub
+
 
                         }
 
                         @Override
                         public void onFinish() {
-                            mButtonChoice2.setBackgroundColor(R.color.buttonBlue);
+                            //sets button color back to default and updates the question.
+                            mButtonChoice2.setBackgroundColor(Color.BLUE);
                             updateQuestion();
                         }
                     }.start();
@@ -172,39 +179,43 @@ public class QuizActivity extends AppCompatActivity {
         mButtonChoice3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // When button is clicked it checks to see if the answer on button is the correct one
                 if(mButtonChoice3.getText().equals(mAnswer)){
+                    //adds point to score if correct
                     mScore = mScore + 1;
                     updateScore(mScore);
-                    //set button colour if correct and pauses0 .5 seconds
+                    //set button colour if correct and pauses0 .6 seconds
                     mButtonChoice3.setBackgroundColor(Color.GREEN);
                     new CountDownTimer(600, 6) {
 
                         @Override
                         public void onTick(long arg0) {
-                            // TODO Auto-generated method stub
+
 
                         }
 
                         @Override
                         public void onFinish() {
-                            mButtonChoice3.setBackgroundColor(R.color.buttonBlue);
+                            //sets button color back to default and updates the question.
+                            mButtonChoice3.setBackgroundColor(Color.BLUE);
                             updateQuestion();
                         }
                     }.start();
                 }else{
-                    //set button colour if correct and pauses0 .5 seconds
+                    //answer is incorrect. set button colour  and pauses0 .6 seconds
                     mButtonChoice3.setBackgroundColor(Color.RED);
                     new CountDownTimer(600, 6) {
 
                         @Override
                         public void onTick(long arg0) {
-                            // TODO Auto-generated method stub
+
 
                         }
 
                         @Override
                         public void onFinish() {
-                            mButtonChoice3.setBackgroundColor(R.color.buttonBlue);
+                            //sets button color back to default and updates the question.
+                            mButtonChoice3.setBackgroundColor(Color.BLUE);
                             updateQuestion();
                         }
                     }.start();
@@ -215,10 +226,11 @@ public class QuizActivity extends AppCompatActivity {
 
 
 
-        //Quit Button
+        //Back Button
         mButtonQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // goes back to home screen
                 startActivity(new Intent(QuizActivity.this, HomeScreen.class));
                 finish();
             }
@@ -238,6 +250,7 @@ public class QuizActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
+        // creates an option menu at the top of the screen
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -245,34 +258,39 @@ public class QuizActivity extends AppCompatActivity {
         if (id == R.id.action_logout) {
             logout();
             return true;
+            // set a logout action in the menu
         }
         return super.onOptionsItemSelected(item);
     }
     private void logout() {
+        // signs the user out of the firebase Auth
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(QuizActivity.this, UserSignInActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+        // sets the activity back to the login screen
     }
 
 
     private void updateScore(int score){
         mScoreView.setText("" + mScore);
     }
+    // update the score on the screen
 
     private void updateQuestion() {
+        //gets an instance from the database, depending on the question number
     mQuestionRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://pilotquiz.firebaseio.com/"+ mQuestionNumber +"/question");
 
     mQuestionRef.addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             String question = dataSnapshot.getValue(String.class);
-            //set buttons colour back to blue
+            //set buttons colour back to blue when any data is changed
             mButtonChoice1.setBackgroundColor(rgb(0, 145, 234));
             mButtonChoice2.setBackgroundColor(rgb(0, 145, 234));
             mButtonChoice3.setBackgroundColor(rgb(0, 145, 234));
-
+            // sets the text for the question
             mQuestion.setText(question);
         }
 
@@ -281,11 +299,13 @@ public class QuizActivity extends AppCompatActivity {
 
         }
     });
+        //Gets the first answer choice from the database
         mChoice1Ref = FirebaseDatabase.getInstance().getReferenceFromUrl("https://pilotquiz.firebaseio.com/"+ mQuestionNumber +"/choice1");
         mChoice1Ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String choice = dataSnapshot.getValue(String.class);
+                // sets the answer data received from the database to the text on the button.
                 mButtonChoice1.setText(choice);
             }
 
@@ -299,6 +319,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String choice = dataSnapshot.getValue(String.class);
+                // sets the answer data received from the database to the text on the button.
                 mButtonChoice2.setText(choice);
             }
 
@@ -312,6 +333,7 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String choice = dataSnapshot.getValue(String.class);
+                // sets the answer data received from the database to the text on the button.
                 mButtonChoice3.setText(choice);
             }
 
@@ -321,7 +343,7 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
-
+        // Get correct answer from database.
         mAnswerRef = FirebaseDatabase.getInstance().getReferenceFromUrl("https://pilotquiz.firebaseio.com/"+ mQuestionNumber +"/answer");
         mAnswerRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -335,13 +357,15 @@ public class QuizActivity extends AppCompatActivity {
 
             }
         });
-
+        // increments question count
         mQuestionNumber ++;
         if (mQuestionCount == 10){
+            // Stops the quiz after 10 questions answered and displayed the result activity.
             startActivity( new Intent(getApplicationContext(),Results.class));
                         finish();
 
         }else{
+            // increments question count
             mQuestionCount ++;
         }
 

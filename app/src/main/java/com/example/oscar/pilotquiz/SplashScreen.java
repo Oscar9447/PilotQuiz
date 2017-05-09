@@ -18,6 +18,7 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
+        //Pauses the app so the splash screen shows for 0.8 seconds.
         Thread thread = new Thread(){
             @Override
             public void run(){
@@ -29,6 +30,7 @@ public class SplashScreen extends Activity {
 
                 finally {
                     startActivity( new Intent(getApplicationContext(),UserSignInActivity.class));
+                    // sets the activity to the home screen when the timer has counted down.
 
                     finish();
                 }
