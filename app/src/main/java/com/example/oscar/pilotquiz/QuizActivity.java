@@ -2,6 +2,7 @@ package com.example.oscar.pilotquiz;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import static android.graphics.Color.rgb;
+import static java.lang.Thread.sleep;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -75,14 +77,44 @@ public class QuizActivity extends AppCompatActivity {
 
                     mScore = mScore + 1;
                     updateScore(mScore);
-                    //set button colour if correct
-                    mButtonChoice1.setBackgroundColor(Color.GREEN);
 
-                       updateQuestion();
+
+                    //set button colour if correct and pauses0 .5 seconds
+                    mButtonChoice1.setBackgroundColor(Color.GREEN);
+                    new CountDownTimer(600, 6) {
+
+                        @Override
+                        public void onTick(long arg0) {
+                            // TODO Auto-generated method stub
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            mButtonChoice1.setBackgroundColor(R.color.buttonBlue);
+                            updateQuestion();
+                        }
+                    }.start();
+
+
+
                 }else{
-                    //set button colour
+                    //set button colour if correct and pauses0 .5 seconds
                     mButtonChoice1.setBackgroundColor(Color.RED);
-                    updateQuestion();
+                    new CountDownTimer(600, 6) {
+
+                        @Override
+                        public void onTick(long arg0) {
+                            // TODO Auto-generated method stub
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            mButtonChoice1.setBackgroundColor(R.color.buttonBlue);
+                            updateQuestion();
+                        }
+                    }.start();
                 }
             }
         });
@@ -97,15 +129,40 @@ public class QuizActivity extends AppCompatActivity {
                     mScore = mScore + 1;
                     updateScore(mScore);
                     //set button colour if correct
+                    //set button colour if correct and pauses0 .5 seconds
                     mButtonChoice2.setBackgroundColor(Color.GREEN);
+                    new CountDownTimer(600, 6) {
 
+                        @Override
+                        public void onTick(long arg0) {
+                            // TODO Auto-generated method stub
 
-                    updateQuestion();
+                        }
+
+                        @Override
+                        public void onFinish() {
+
+                            mButtonChoice2.setBackgroundColor(R.color.buttonBlue);
+                            updateQuestion();
+                        }
+                    }.start();
                 }else{
-                    //set button colour
+                    //set button colour if correct and pauses0 .5 seconds
                     mButtonChoice2.setBackgroundColor(Color.RED);
+                    new CountDownTimer(600, 6) {
 
-                    updateQuestion();
+                        @Override
+                        public void onTick(long arg0) {
+                            // TODO Auto-generated method stub
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            mButtonChoice2.setBackgroundColor(R.color.buttonBlue);
+                            updateQuestion();
+                        }
+                    }.start();
                 }
             }
         });
@@ -118,16 +175,39 @@ public class QuizActivity extends AppCompatActivity {
                 if(mButtonChoice3.getText().equals(mAnswer)){
                     mScore = mScore + 1;
                     updateScore(mScore);
-                    //set button colour if correct
+                    //set button colour if correct and pauses0 .5 seconds
                     mButtonChoice3.setBackgroundColor(Color.GREEN);
+                    new CountDownTimer(600, 6) {
 
+                        @Override
+                        public void onTick(long arg0) {
+                            // TODO Auto-generated method stub
 
-                    updateQuestion();
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            mButtonChoice3.setBackgroundColor(R.color.buttonBlue);
+                            updateQuestion();
+                        }
+                    }.start();
                 }else{
-                    //set button colour
+                    //set button colour if correct and pauses0 .5 seconds
                     mButtonChoice3.setBackgroundColor(Color.RED);
+                    new CountDownTimer(600, 6) {
 
-                    updateQuestion();
+                        @Override
+                        public void onTick(long arg0) {
+                            // TODO Auto-generated method stub
+
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            mButtonChoice3.setBackgroundColor(R.color.buttonBlue);
+                            updateQuestion();
+                        }
+                    }.start();
                 }
             }
         });

@@ -51,7 +51,7 @@ public class UserSignInActivity extends AppCompatActivity {
 
         setContentView(R.layout.user_sign_in);
 
-        ((TextView)findViewById(R.id.signupHere)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.signupHere).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UserSignInActivity.this, UserSignUpActivity.class));

@@ -43,7 +43,7 @@ public class UserSignUpActivity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.password);
 
 
-        ((TextView)findViewById(R.id.loginTextView)).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.loginTextView).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UserSignUpActivity.this, UserSignInActivity.class));
