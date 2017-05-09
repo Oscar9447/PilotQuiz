@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 /**
  * Created by Oscar
  */
@@ -29,8 +31,16 @@ public class SplashScreen extends Activity {
                 catch (Exception e) {}
 
                 finally {
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
+                    if (auth.getCurrentUser() != null) {
+                        // Goes to home avtivity is user is still logged in
+                        startActivity(new Intent(SplashScreen.this, HomeScreen.class));
+                        finish();
+                        // allows for persistent login
+                    }
+                    else
                     startActivity( new Intent(getApplicationContext(),UserSignInActivity.class));
-                    // sets the activity to the home screen when the timer has counted down.
+                    // sets the activity to the User sign in screen if not already signed in.
 
                     finish();
                 }
